@@ -32,9 +32,33 @@ body {
 }
 
 .sidebar .profile p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.affiliation {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.location {
+  font-size: 0.8rem;
   opacity: 0.8;
-  margin-bottom: 1.5rem;
+}
+
+.tags {
+  margin: 0.75rem 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.7rem;
+  background: rgba(255,255,255,0.15);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
 }
 
 .avatar {

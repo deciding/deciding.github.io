@@ -4,8 +4,12 @@ url: https://deciding.github.io
 theme: minima
 
 author:
-  name: ZhangZ
+  name: Dr. Zhang Zining
+  title: Singapore
+  tags: LLM, HPC, CUDA Kernel, Vibe Coding
+  affiliation: Postdoc @ National University of Singapore
   github: deciding
-  twitter: yourusername
+  twitter: zhangzn710
+  zhihu: zhangzn-49-6
 
 show_excerpts: true

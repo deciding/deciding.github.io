@@ -11,7 +11,13 @@
       <div class="profile">
         <div class="avatar"></div>
         <h2>{{ site.author.name }}</h2>
-        <p>{{ site.description }}</p>
+        <p class="affiliation">{{ site.author.affiliation }}</p>
+        <p class="location">📍 {{ site.author.title }}</p>
+        <div class="tags">
+          {% for tag in site.author.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
       </div>
       <nav class="sidebar-nav">
         <ul>
@@ -20,8 +26,9 @@
         </ul>
       </nav>
       <div class="social-links">
-        <a href="https://github.com/{{ site.author.github | default: 'yourusername' }}" target="_blank">GitHub</a>
-        <a href="https://twitter.com/{{ site.author.twitter | default: 'yourusername' }}" target="_blank">Twitter</a>
+        <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
+        <a href="https://x.com/{{ site.author.twitter }}" target="_blank">X</a>
+        <a href="https://www.zhihu.com/people/{{ site.author.zhihu }}" target="_blank">知乎</a>
       </div>
     </aside>
     <main class="content">
