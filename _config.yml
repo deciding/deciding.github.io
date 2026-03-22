@@ -5,5 +5,7 @@ theme: minima
 
 author:
   name: ZhangZ
+  github: deciding
+  twitter: yourusername
 
 show_excerpts: true

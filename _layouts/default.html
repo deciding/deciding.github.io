@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar"></div>
+        <h2>{{ site.author.name }}</h2>
+        <p>{{ site.description }}</p>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a href="{{ '/articles' | relative_url }}">Articles</a></li>
+          <li><a href="{{ '/about' | relative_url }}">About</a></li>
+        </ul>
+      </nav>
+      <div class="social-links">
+        <a href="https://github.com/{{ site.author.github | default: 'yourusername' }}" target="_blank">GitHub</a>
+        <a href="https://twitter.com/{{ site.author.twitter | default: 'yourusername' }}" target="_blank">Twitter</a>
+      </div>
+    </aside>
+    <main class="content">
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
