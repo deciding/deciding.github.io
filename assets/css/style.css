@@ -192,6 +192,37 @@ h1, .main-content > h2 {
   font-weight: 500;
 }
 
+.main-content table.naming-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.main-content table.naming-table td {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+.main-content table.naming-table tr:first-child td {
+  background: #2c3e50;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.main-content table.naming-table th,
+.main-content table.naming-table td {
+  font-size: 0.9rem;
+}
+
+.main-content table.naming-table strong {
+  color: #2c3e50;
+}
+
 h1 {
   margin-bottom: 1.5rem;
   color: #2c3e50;
@@ -372,6 +403,18 @@ body[data-theme="night"] .main-content th {
 
 body[data-theme="night"] .main-content a {
   color: #64b5f6;
+}
+
+body[data-theme="night"] .main-content table.naming-table {
+  background: #1a1a2e;
+}
+
+body[data-theme="night"] .main-content table.naming-table td {
+  border-color: #333;
+}
+
+body[data-theme="night"] .main-content table.naming-table tr:first-child td {
+  background: #16213e;
 }
 
 body[data-theme="night"] .article-content blockquote {

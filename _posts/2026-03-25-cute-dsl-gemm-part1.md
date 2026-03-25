@@ -21,51 +21,82 @@ Currently, most available CuTe examples are either highly refined industrial imp
      - `tma_partition`: Does NOT accept Flat shape; input must be *hierarchical (nested) shape (tma_tile, *Rests)* after operations like `group_modes`.
   3. **Logical Hierarchy of Shapes**: Matrix tiling follows a progressive relationship at physical and logical levels: Block (TMA) > MMA > EPI > Store. Understanding this chain is the foundation for deriving the final Tensor shape.
 
-```
-+-----------------------------------------------------------------------+
-|                    CuTeDSL Variable Naming Convention Diagram          |
-+-----------------------------------------------------------------------+
-|                                                                       |
-| Structure: [ Prefix ] [ Core ] [ Suffix ]                             |
-| Meaning:   Scope      Operation   Location                           |
-|                                                                       |
-| Mapping Table:                                                        |
-|   t : Thread       A : TMA Load A   gA : Global Mem A               |
-|   b : Block        B : TMA Load B   sA : Shared Mem A               |
-|   C : MMA Op (C)  RS: Reg to SMem  rA : Register A                 |
-|   ...                                   tA : TMEM A (B200)          |
-|                                          sC : Shared Mem C           |
-|                                                                       |
-+-----------------------------------------------------------------------+
-| Typical Example Analysis 1:                                           |
-|                                                                       |
-| t C gA                                                                |
-| │ │ │                                                                |
-| │ │ └─ [Location] : Global Memory A (gA)                             |
-| │ │                                                                  |
-| │ └──── [Operation]: Represents the MMA Op (C) requirement          |
-| │                                                                    |
-| └─────── [Scope] : Current Thread (t) perspective                    |
-|                                                                       |
-| Semantics: A Tile view partitioned from Global Memory A (gA) to      |
-| satisfy the current Thread's MMA Op (C) requirement.                 |
-|                                                                       |
-+-----------------------------------------------------------------------+
-| Typical Example Analysis 2:                                           |
-|                                                                       |
-| t RS sC                                                               |
-| │ │ │                                                                |
-| │ │ └─ [Location] : Target is Shared Memory C (sC)                  |
-| │ │                                                                  |
-| │ └───── [Operation]: Store action from Reg to SMem (RS)            |
-| │                                                                    |
-| └──────── [Scope] : Executed by current Thread (t)                   |
-|                                                                       |
-| Semantics: The current Thread (t) executes a Store operation from    |
-| Register to Shared Memory (sC).                                      |
-|                                                                       |
-+-----------------------------------------------------------------------+
-```
+<table>
+<tr><td colspan="2">
+
+## CuTeDSL Variable Naming Convention
+
+</td></tr>
+<tr><td colspan="2">
+
+**Structure:** `[ Prefix ] [ Core ] [ Suffix ]`  
+**Meaning:** `Scope` `Operation` `Location`
+
+</td></tr>
+<tr>
+<td>
+
+**Prefix (Scope)**
+
+| Code | Meaning |
+|------|---------|
+| t | Thread |
+| b | Block (CTA) |
+
+</td>
+<td>
+
+**Suffix (Location)**
+
+| Code | Meaning |
+|------|---------|
+| gA/gB | Global Memory A/B |
+| sA/sB | Shared Memory A/B |
+| rA/rB | Register A/B |
+| tA | TMEM A (B200) |
+| sC | Shared Memory C |
+
+</td>
+</tr>
+<tr>
+<td>
+
+**Core (Operation)**
+
+| Code | Meaning |
+|------|---------|
+| A | TMA Load A |
+| B | TMA Load B |
+| C | MMA Op (C = A×B) |
+| RS | Register → SMem |
+
+</td>
+<td>
+
+**Examples**
+
+- `tCgA`: Thread's MMA Op (C) need → Global A
+- `tRSsC`: Thread Reg→SMem → Shared C
+
+</td>
+</tr>
+</table>
+
+**Example 1: `tCgA`**
+- `t` → Scope: Current Thread
+- `C` → Operation: MMA multiplication (C = A×B)
+- `gA` → Location: Global Memory A
+
+*Semantics: A Tile view partitioned from Global Memory A to satisfy the current Thread's MMA Op (C) requirement.*
+
+**Example 2: `tRSsC`**
+- `t` → Scope: Current Thread
+- `RS` → Operation: Store from Register to SMem
+- `sC` → Location: Shared Memory C
+
+*Semantics: The current Thread executes a Store operation from Register to Shared Memory C.*
+
+---
 
 ![Shape Hierarchy](/assets/images/2026-03-25-cute-dsl-gemm-part1/figure_1_shape_hierarchy.jpg)
 
