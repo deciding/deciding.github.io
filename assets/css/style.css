@@ -215,19 +215,19 @@ h1 {
   margin: 1rem 0;
 }
 
-.article-content table {
+.main-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
 }
 
-.article-content th, .article-content td {
+.main-content th, .main-content td {
   border: 1px solid #ddd;
   padding: 0.75rem;
   text-align: left;
 }
 
-.article-content th {
+.main-content th {
   background: #f5f5f5;
   font-weight: 600;
 }
@@ -263,7 +263,8 @@ h1 {
   color: inherit;
 }
 
-.article-content hr {
+.article-content hr,
+.main-content hr {
   border: none;
   border-top: 1px solid #ddd;
   margin: 2rem 0;
@@ -340,12 +341,19 @@ body[data-theme="night"] .article-content a {
 }
 
 body[data-theme="night"] .article-content th,
-body[data-theme="night"] .article-content td {
+body[data-theme="night"] .article-content td,
+body[data-theme="night"] .main-content th,
+body[data-theme="night"] .main-content td {
   border-color: #333;
 }
 
-body[data-theme="night"] .article-content th {
+body[data-theme="night"] .article-content th,
+body[data-theme="night"] .main-content th {
   background: #1a1a2e;
+}
+
+body[data-theme="night"] .main-content a {
+  color: #64b5f6;
 }
 
 body[data-theme="night"] .article-content blockquote {
@@ -357,7 +365,8 @@ body[data-theme="night"] .article-content code {
   background: #1a1a2e;
 }
 
-body[data-theme="night"] .article-content hr {
+body[data-theme="night"] .article-content hr,
+body[data-theme="night"] .main-content hr {
   border-color: #333;
 }
 
