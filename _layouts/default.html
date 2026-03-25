@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body>
+<body data-theme="night">
   <header class="header">
     <div class="header-left">
       <span class="author-name">{{ site.author.name }}</span>
@@ -23,10 +23,36 @@
       <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
       <a href="https://x.com/{{ site.author.twitter }}" target="_blank">X</a>
       <a href="https://www.zhihu.com/people/{{ site.author.zhihu }}" target="_blank">知乎</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <span class="theme-icon">☀️</span>
+      </button>
     </div>
   </header>
   <main class="main-content">
     {{ content }}
   </main>
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      const next = current === 'night' ? 'day' : 'night';
+      body.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon();
+    }
+    function updateThemeIcon() {
+      const icon = document.querySelector('.theme-icon');
+      if (document.body.getAttribute('data-theme') === 'night') {
+        icon.textContent = '☀️';
+      } else {
+        icon.textContent = '🌙';
+      }
+    }
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      document.body.setAttribute('data-theme', saved);
+    }
+    updateThemeIcon();
+  </script>
 </body>
 </html>
