@@ -7,13 +7,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=5' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=6' | relative_url }}">
 </head>
 <body data-theme="night">
   <header class="header">
     <div class="header-left">
-      <span class="author-name">{{ site.author.name }}</span>
-      <span class="affiliation">{{ site.author.affiliation }}</span>
+      <a href="{{ '/' | relative_url }}" class="logo-link">
+        <img src="{{ '/assets/logo.jpg' | relative_url }}" alt="Logo" class="logo">
+      </a>
+      <div class="header-text">
+        <a href="{{ '/' | relative_url }}" class="logo-link">
+          <span class="author-name">{{ site.author.name }}</span>
+        </a>
+        <span class="affiliation">{{ site.author.affiliation }}</span>
+      </div>
     </div>
     <nav class="header-nav">
       <a href="{{ '/' | relative_url }}">Articles</a>
