@@ -67,7 +67,7 @@ Currently, most available CuTe examples are either highly refined industrial imp
 +-----------------------------------------------------------------------+
 ```
 
-![Shape Hierarchy](/assets/images/2026-03-25-cute-dsl-gemm-part1/figure_1_shape_hierarchy.png)
+![Shape Hierarchy](/assets/images/2026-03-25-cute-dsl-gemm-part1/figure_1_shape_hierarchy.jpg)
 
 ---
 
