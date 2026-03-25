@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "[Triton Bottom-Up Modification Series] From Vector Add to FlashAttention-Level Optimization (Part 1)"
+title: "[Triton Hacked] From Vector Add to FlashAttention-Level Optimization (Part 1)"
 date: 2026-03-25
 ---
 
