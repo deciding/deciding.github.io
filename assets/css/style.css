@@ -358,7 +358,7 @@ body[data-theme="day"] .article-content {
 /* Mobile Responsive */
 @media (max-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
   
   .header {
@@ -374,7 +374,7 @@ body[data-theme="day"] .article-content {
   }
   
   .author-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   
   .affiliation {
@@ -386,7 +386,7 @@ body[data-theme="day"] .article-content {
   }
   
   .header-nav a {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   
   .header-links {
@@ -394,52 +394,56 @@ body[data-theme="day"] .article-content {
   }
   
   .main-content {
-    padding: 1rem;
-  }
-  
-  .article-content {
     padding: 1.25rem;
   }
   
+  .article-content {
+    padding: 1.5rem;
+  }
+  
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   
   .article-content h2 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
   
   .article-content h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   
   .article-content p {
-    font-size: 1rem;
-  }
-  
-  .article-content pre {
-    padding: 0.75rem;
-    font-size: 0.85rem;
-  }
-  
-  .article-content code {
-    font-size: 0.85rem;
-  }
-  
-  .article-content table {
-    font-size: 0.85rem;
-  }
-  
-  .article-item {
-    padding: 1rem;
-  }
-  
-  .article-item h2 {
     font-size: 1.1rem;
   }
   
-  .back-btn {
-    padding: 0.6rem 1rem;
+  .article-content pre {
+    padding: 1rem;
     font-size: 0.95rem;
+  }
+  
+  .article-content code {
+    font-size: 0.95rem;
+  }
+  
+  .article-content table {
+    font-size: 0.95rem;
+  }
+  
+  .article-item {
+    padding: 1.25rem;
+  }
+  
+  .article-item h2 {
+    font-size: 1.25rem;
+  }
+  
+  .article-item p {
+    font-size: 1.05rem;
+  }
+  
+  .back-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 1.1rem;
   }
 }
