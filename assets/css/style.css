@@ -144,6 +144,36 @@ body {
   background: #2980b9;
 }
 
+h1, .main-content > h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.main-content > h2 {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.main-content > ol, .main-content > ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.main-content > ol li, .main-content > ul li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.main-content .venue {
+  color: #666;
+  font-style: italic;
+}
+
+.main-content .status {
+  color: #e67e22;
+  font-weight: 500;
+}
+
 h1 {
   margin-bottom: 1.5rem;
   color: #2c3e50;
@@ -335,6 +365,14 @@ body[data-theme="night"] .figure-placeholder {
   background: #16213e;
   border-color: #444;
   color: #888;
+}
+
+body[data-theme="night"] .main-content > h2 {
+  color: #e0e0e0;
+}
+
+body[data-theme="night"] .main-content .venue {
+  color: #a0a0a0;
 }
 
 /* Day Mode */
