@@ -2,6 +2,10 @@ title: ZhangZ's Blog
 description: Personal blog
 url: https://deciding.github.io
 theme: minima
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 author:
   name: Dr. Zhang Zining

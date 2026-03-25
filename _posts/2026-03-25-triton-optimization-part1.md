@@ -4,7 +4,7 @@ title: "[Triton Bottom-Up Modification Series] From Vector Add to FlashAttention
 date: 2026-03-25
 ---
 
-I've always had a question: Why do other DSLs claim to be several times faster than Triton? Where does that倍数 come from? Is it really that hard for Triton to achieve this performance?
+I've always had a question: Why do other DSLs claim to be several times faster than Triton? Where does that speed-up come from? Is it really that hard for Triton to achieve this performance?
 
 I plan to answer these questions in a series. The series will include two parts:
 1. Triton's internal compiler working principles
