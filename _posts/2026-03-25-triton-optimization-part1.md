@@ -91,7 +91,7 @@ Python → TTIR → TTGIR → LLIR → PTX → SASS
 
 If you want to understand what each stage optimizes, you can visit [TeraXLang IR Viewer](https://deciding.github.io/txl/tools/ir-viewer.html), or open [TeraXLang](https://deciding.github.io/txl) and select Tools → IR Viewer to compare optimized vs unoptimized code (supports ttir, ttgir, llir, ptx).
 
-![TeraXLang IR Viewer](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.svg)
+![TeraXLang IR Viewer](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.gif)
 
 ### Viewing Diff
 
