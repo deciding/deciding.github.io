@@ -30,7 +30,7 @@ title: Publications
   <li>
     <strong>Efficient KV Cache Spillover Management on Memory-Constrained GPU for LLM Inference.</strong><br>
     Jiang Jiazhi, Chen Yao, <em>Zhang Zining</em>, He Bingsheng, etc.<br>
-    <span class="venue">IEEE Transactions on Parallel and Distributed Systems (TPDS 2025)</span> <span class="status">(Accepted)</span>
+    <span class="venue">IEEE Transactions on Parallel and Distributed Systems (TPDS 2025)</span>
   </li>
 </ol>
 
