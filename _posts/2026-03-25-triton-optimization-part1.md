@@ -91,7 +91,7 @@ Python → TTIR → TTGIR → LLIR → PTX → SASS
 
 If you want to understand what each stage optimizes, you can visit [TeraXLang IR Viewer](https://deciding.github.io/txl/tools/ir-viewer.html), or open [TeraXLang](https://deciding.github.io/txl) and select Tools → IR Viewer to compare optimized vs unoptimized code (supports ttir, ttgir, llir, ptx).
 
-![TeraXLang IR Viewer](figure_placeholder_1)
+![TeraXLang IR Viewer](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.png)
 
 ### Viewing Diff
 
@@ -107,19 +107,19 @@ After running with modal, you can add parameters on `txl.jit` (formerly `tl.jit`
 
 ttir/ttgir/llir are different stages in the optimization process, and each stage consists of multiple passes. For example, ttir includes these passes (those with txl suffix are unique to teraxlang):
 
-![ttir passes](figure_placeholder_2)
+![ttir passes](/assets/images/2026-03-25-triton-optimization-part1/figure_2_ttir_passes.png)
 
 ttgir passes:
 
-![ttgir passes](figure_placeholder_3)
+![ttgir passes](/assets/images/2026-03-25-triton-optimization-part1/figure_3_ttgir_passes.png)
 
 llir passes:
 
-![llir passes](figure_placeholder_4)
+![llir passes](/assets/images/2026-03-25-triton-optimization-part1/figure_4_llir_passes.png)
 
 This feature is helpful because it outputs each specific pass — what exactly was optimized. For example, the first step of ttgir adds inferred layout information to each tensor (to be explained later):
 
-![ttir first pass](figure_placeholder_5)
+![ttir first pass](/assets/images/2026-03-25-triton-optimization-part1/figure_5_ttir_first_pass.png)
 
 I hope this doesn't scare everyone. Although there's a lot of information, I'll try to focus on the most important. And since this article is just the pilot of the series, I won't jump straight into advanced content.
 
@@ -169,29 +169,29 @@ This tool is especially useful for analyzing the compilation process. For exampl
 
 After running `modal run docker/tutorials/vector_add.py`, you'll see output like this — three HTML files generated:
 
-![vector add output](figure_placeholder_6)
+![vector add output](/assets/images/2026-03-25-triton-optimization-part1/figure_6_vector_add_output.png)
 
 But the files are still on the cloud. Use `modal volume get {VOLUME_NAME} {DUMP_DIR}` to download them.
 
 Let's open the file ending with `viewer_ttir.html`:
 
-![ttir viewer](figure_placeholder_7)
+![ttir viewer](/assets/images/2026-03-25-triton-optimization-part1/figure_7_ttir_viewer.png)
 
 The colored lines show ttir ↔ py correspondences. Click to jump to the corresponding line. This way you know what Triton code gets converted to. The reverse is also useful — some advanced kernels can expand to hundreds or thousands of lines; clicking lets you directly see which line of Triton it corresponds to, making debugging easier.
 
 For example, `tl.load(y_ptr + offsets)` corresponds to this ttir:
 
-![tl.load ttir](figure_placeholder_8)
+![tl.load ttir](/assets/images/2026-03-25-triton-optimization-part1/figure_8_tl_load_ttir.png)
 
 `splat` distributes one ptr to the entire 1024-length vector, `addptr` adds the offset to each element's pointer, then `load` reads the data from those pointers.
 
 Let's switch to the ttgir HTML:
 
-![ttgir viewer](figure_placeholder_9)
+![ttgir viewer](/assets/images/2026-03-25-triton-optimization-part1/figure_9_ttgir_viewer.png)
 
 You'll notice the same tensor type has an extra `#blocked` annotation. This `#blocked` is actually the name of a layout variable, indicating this tensor has a defined layout, defined in a variable called `blocked`. The specific definition is at the file header:
 
-![layout definition](figure_placeholder_10)
+![layout definition](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.png0)
 
 There are two layout variables, `blocked` and `blocked1`, both of type `ttg.blocked` (in Triton C++ code the type is `BlockedLayout`). Triton has several layouts like `NVMMASharedLayout` for mma operands, `SwizzledSharedLayout`, etc. `BlockedLayout` is simpler — from the definition you can see: `blocked` is distributed across 4 warps, each with 32 threads, each thread storing 4 registers.
 
@@ -199,7 +199,7 @@ Careful readers might notice一个问题: the vector length is 1024, but accordi
 
 This brings us to the ptx file:
 
-![ptx file](figure_placeholder_11)
+![ptx file](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.png1)
 
 The data loading here uses `ld.global.v4` — loading 4 values at a time. This corresponds to why `blocked`'s `sizePerThread` is 4. If it's not fully divided in one load, each thread loads again — that's why there are two `ld.global.v4` statements.
 
@@ -211,17 +211,17 @@ The `blocked` definition doesn't necessarily cover the entire vector; it just de
 
 Try running `modal run docker/fa4_benchmark.py`:
 
-![cute dsl output](figure_placeholder_12)
+![cute dsl output](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.png2)
 
 To open the HTML, use the one starting with `cutlass___call___flash_attn_local...` — the one with "local" in the name, which is the tunable FA4 py file.
 
 Then you can jump between fa4 and ptx:
 
-![cute dsl viewer](figure_placeholder_13)
+![cute dsl viewer](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.png3)
 
 But there's a problem: cuteDSL's optimization level is too high. Even with only O1 enabled, Python mappings are very hard to find. Something helpful I found: for example, this line `cute.copy`:
 
-![cute copy](figure_placeholder_14)
+![cute copy](/assets/images/2026-03-25-triton-optimization-part1/figure_1_ir_viewer.png4)
 
 When I write compilers, I rarely pay attention to `L2::cache_hint` — how much performance impact does this have?
 
