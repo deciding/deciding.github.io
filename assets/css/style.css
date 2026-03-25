@@ -358,7 +358,7 @@ body[data-theme="day"] .article-content {
 /* Mobile Responsive */
 @media (max-width: 768px) {
   body {
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .header {
@@ -374,7 +374,7 @@ body[data-theme="day"] .article-content {
   }
   
   .author-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .affiliation {
@@ -382,68 +382,68 @@ body[data-theme="day"] .article-content {
   }
   
   .header-nav {
-    gap: 1rem;
-  }
-  
-  .header-nav a {
-    font-size: 1rem;
-  }
-  
-  .header-links {
     gap: 0.75rem;
   }
   
+  .header-nav a {
+    font-size: 0.9rem;
+  }
+  
+  .header-links {
+    gap: 0.5rem;
+  }
+  
   .main-content {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   
   .article-content {
-    padding: 1.25rem;
+    padding: 1rem;
   }
   
   h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   
   .article-content h2 {
-    font-size: 1.4rem;
-  }
-  
-  .article-content h3 {
     font-size: 1.2rem;
   }
   
+  .article-content h3 {
+    font-size: 1.1rem;
+  }
+  
   .article-content p {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
   
   .article-content pre {
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 0.8rem;
   }
   
   .article-content code {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   
   .article-content table {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   
   .article-item {
-    padding: 1.25rem;
+    padding: 1rem;
   }
   
   .article-item h2 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
   
   .article-item p {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
   .back-btn {
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
   }
 }
