@@ -6,34 +6,24 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="profile">
-        <div class="avatar"></div>
-        <h2>{{ site.author.name }}</h2>
-        <p class="affiliation">{{ site.author.affiliation }}</p>
-        <p class="location">📍 {{ site.author.title }}</p>
-        <div class="tags">
-          {% for tag in site.author.tags %}
-            <span class="tag">{{ tag }}</span>
-          {% endfor %}
-        </div>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="{{ '/' | relative_url }}">Articles</a></li>
-          <li><a href="{{ '/publications' | relative_url }}">Publications</a></li>
-        </ul>
-      </nav>
-      <div class="social-links">
-        <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
-        <a href="https://x.com/{{ site.author.twitter }}" target="_blank">X</a>
-        <a href="https://www.zhihu.com/people/{{ site.author.zhihu }}" target="_blank">知乎</a>
-      </div>
-    </aside>
-    <main class="content">
-      {{ content }}
-    </main>
-  </div>
+  <header class="header">
+    <div class="header-left">
+      <span class="author-name">{{ site.author.name }}</span>
+      <span class="affiliation">{{ site.author.affiliation }}</span>
+    </div>
+    <nav class="header-nav">
+      <a href="{{ '/' | relative_url }}">Articles</a>
+      <a href="{{ '/publications' | relative_url }}">Publications</a>
+      <a href="{{ '/projects' | relative_url }}">Projects</a>
+    </nav>
+    <div class="header-links">
+      <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
+      <a href="https://x.com/{{ site.author.twitter }}" target="_blank">X</a>
+      <a href="https://www.zhihu.com/people/{{ site.author.zhihu }}" target="_blank">知乎</a>
+    </div>
+  </header>
+  <main class="main-content">
+    {{ content }}
+  </main>
 </body>
 </html>
