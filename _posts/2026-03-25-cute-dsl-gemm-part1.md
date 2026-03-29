@@ -175,6 +175,10 @@ A common misconception is treating `tma_partition` and `partition_*` as equivale
 
 Example: If local_tile's result is `(128, 64, 16)` → `(bM, bN, RestK)`, we first `group_modes` to `((128, 64), 16)` → `((bM, bN), RestK)` → `(tma_tile, RestK)`, then `tma_partition(((64, 128), 1), 16)` → `(tma_atom_tile, RestK)`. If we understand `(128, 64)` as tma_tile, then `((64, 128), 1)` is just tma_tile conforming to tma atom tile format. Actually, the shape hasn't changed before and after.
 
+Note that, many codes use tCgA instead of gA (the local_tile result) as the input to `tma_partition`.
+In this case, ((128, 16), 1, 4, 16) if first `group_modes` to (((128, 64), 1, 4), 16) -> ((mma_atom, *mma_rests), RestK)
+Actually, (mma_atom, *mma_rests) can still be treated as tma_tile. And both inputs give you the same partitioned results.
+
 ---
 
 ## 4. Ultimate Verification: Parsing Multi-Layer Partitioned Shape Hierarchy
