@@ -124,6 +124,8 @@ Unlike Triton's macro-level operations like `splat` and `split`, CuTe requires f
 
 These three are easy to understand literally, but the key lies in their implicit constraints in actual APIs.
 
+Note that for `logical_divide`, although it is different from `tiled_divide` in the cpp documents, it behaves the same as it in cutedsl
+
 ### I. local_tile: Slice with Coordinates + Unfold
 
 `local_tile` internally calls `zipped_divide`, then obtains Rest part data based on coord, and finally *unfolds* the Tile part. Therefore, the return value of `local_tile` is always a *Flat* format Tensor.
